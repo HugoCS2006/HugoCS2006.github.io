@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Hugo Coelho · Automação & Impressão 3D</title>
+  <meta name="description" content="Hugo Coelho: futuro Engenheiro de Controle e Automação (UFSC) e empreendedor 3D. Transformando ideias no mundo digital em realidade física.">
+  <meta name="author" content="Hugo Coelho">
+  <link rel="canonical" href="https://hugocs2006.github.io/">
+  <meta name="theme-color" content="#0b0d12">
+  <meta name="color-scheme" content="dark">
+
+  <meta property="og:type" content="profile">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Hugo Coelho · Automação & Impressão 3D">
+  <meta property="og:description" content="Transformando ideias no mundo digital em realidade física. 🖨️⚡">
+  <meta property="og:url" content="https://hugocs2006.github.io/">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23ff7a1a'/><stop offset='1' stop-color='%2322d3ee'/></linearGradient></defs><rect width='64' height='64' rx='16' fill='url(%23g)'/><text x='32' y='42' font-family='Arial,sans-serif' font-size='26' font-weight='800' text-anchor='middle' fill='%230b0d12'>HC</text></svg>">
+
+  <style>
+    :root {
+      --bg: #0b0d12;
+      --card: rgba(255, 255, 255, 0.055);
+      --card-hover: rgba(255, 255, 255, 0.09);
+      --border: rgba(255, 255, 255, 0.10);
+      --text: #f4f6fb;
+      --muted: #a3abbd;
+      --orange: #ff7a1a;
+      --cyan: #22d3ee;
+      --green: #25d366;
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { -webkit-text-size-adjust: 100%; }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(600px 400px at 15% -5%, rgba(255, 122, 26, 0.22), transparent 60%),
+        radial-gradient(600px 400px at 100% 20%, rgba(34, 211, 238, 0.16), transparent 60%),
+        radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+      background-size: auto, auto, 22px 22px;
+      background-attachment: fixed;
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    main {
+      width: 100%;
+      max-width: 440px;
+      margin: 0 auto;
+      padding: max(40px, env(safe-area-inset-top)) 18px max(32px, env(safe-area-inset-bottom));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ---------- Perfil ---------- */
+    .avatar {
+      position: relative;
+      width: 116px;
+      height: 116px;
+      border-radius: 50%;
+      padding: 3px;
+      box-shadow: 0 10px 40px rgba(255, 122, 26, 0.25);
+    }
+    .avatar::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, var(--orange), var(--cyan), var(--orange));
+      animation: spin 6s linear infinite;
+    }
+    .avatar-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #141821;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+    .avatar-inner span {
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      background: linear-gradient(135deg, var(--orange), var(--cyan));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .avatar-inner img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    h1 {
+      margin-top: 18px;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      text-align: center;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .tag {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--muted);
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 5px 11px;
+      border-radius: 999px;
+    }
+
+    .bio {
+      margin-top: 16px;
+      max-width: 360px;
+      text-align: center;
+      color: #d3d8e3;
+      font-size: 15.5px;
+    }
+    .bio strong {
+      background: linear-gradient(90deg, var(--orange), var(--cyan));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* ---------- Links ---------- */
+    .links {
+      width: 100%;
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-height: 68px;
+      padding: 12px 16px 12px 12px;
+      border-radius: var(--radius);
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      text-decoration: none;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+    .link:hover { background: var(--card-hover); border-color: rgba(255, 255, 255, 0.18); }
+    .link:active { transform: scale(0.97); }
+
+    .icon {
+      flex: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+    }
+    .icon svg { width: 24px; height: 24px; }
+
+    .label { flex: 1; min-width: 0; }
+    .label b { display: block; font-size: 16px; font-weight: 700; }
+    .label small { display: block; font-size: 13px; color: var(--muted); }
+
+    .chev { flex: none; width: 18px; height: 18px; color: var(--muted); }
+
+    /* WhatsApp em destaque */
+    .link.primary {
+      min-height: 76px;
+      background: linear-gradient(135deg, #128c4a, #1fbf5b);
+      border-color: transparent;
+      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.28);
+    }
+    .link.primary .icon { background: rgba(255, 255, 255, 0.2); }
+    .link.primary small { color: rgba(255, 255, 255, 0.85); }
+    .link.primary .chev { color: #fff; }
+    .link.primary b { font-size: 17px; }
+
+    .ig { background: linear-gradient(45deg, #f09433, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888); }
+    .li { background: #0a66c2; }
+    .lattes { background: linear-gradient(135deg, #2563eb, #22d3ee); }
+    .mail { background: linear-gradient(135deg, #ff7a1a, #f43f5e); }
+
+    /* Ações */
+    .actions {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .action {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 54px;
+      border-radius: var(--radius);
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.15s ease, background 0.2s ease;
+    }
+    .action:hover { background: var(--card-hover); }
+    .action:active { transform: scale(0.96); }
+    .action svg { width: 20px; height: 20px; }
+
+    /* Em breve */
+    .soon {
+      width: 100%;
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: var(--radius);
+      border: 1.5px dashed rgba(255, 255, 255, 0.16);
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .soon .pill {
+      margin-left: auto;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: linear-gradient(90deg, var(--orange), var(--cyan));
+      padding: 4px 9px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    footer {
+      margin-top: 36px;
+      font-size: 12.5px;
+      color: #6b7385;
+      text-align: center;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: max(24px, env(safe-area-inset-bottom));
+      transform: translate(-50%, 20px);
+      background: #f4f6fb;
+      color: #0b0d12;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    /* Entrada animada */
+    .reveal { opacity: 0; transform: translateY(14px); animation: rise 0.6s cubic-bezier(.2, .7, .2, 1) forwards; }
+    @keyframes rise { to { opacity: 1; transform: none; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .avatar::before { animation: none; }
+      .reveal { animation: none; opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="avatar reveal" style="animation-delay:0s">
+      <div class="avatar-inner">
+        <span>HC</span>
+        <!-- Para usar sua foto: envie um arquivo "foto.jpg" para o repositório -->
+        <img src="foto.jpg" alt="Foto de Hugo Coelho" onerror="this.remove()">
+      </div>
+    </div>
+
+    <h1 class="reveal" style="animation-delay:.05s">Hugo Coelho</h1>
+
+    <div class="tags reveal" style="animation-delay:.1s">
+      <span class="tag">⚙️ Automação · UFSC</span>
+      <span class="tag">🖨️ Impressão 3D</span>
+    </div>
+
+    <p class="bio reveal" style="animation-delay:.15s">
+      <strong>Transformando ideias no mundo digital em realidade física.</strong> 🖨️⚡<br>
+      Futuro Engenheiro de Controle e Automação (UFSC) e Empreendedor 3D.
+    </p>
+
+    <nav class="links" aria-label="Links">
+      <a class="link primary reveal" style="animation-delay:.2s" href="#" id="whatsapp" target="_blank" rel="noopener">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 4.54 0 8.24 3.7 8.24 8.24 0 4.54-3.7 8.24-8.23 8.24Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></svg>
+        </span>
+        <span class="label"><b>Fale comigo no WhatsApp</b><small>Resposta rápida 💬</small></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+      </a>
+
+      <a class="link reveal" style="animation-delay:.25s" href="https://instagram.com/ofchugocs" target="_blank" rel="noopener">
+        <span class="icon ig">
+          <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16ZM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.13 1.38A5.9 5.9 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.13a5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63C19.1.33 18.22.13 16.95.07 15.67.01 15.26 0 12 0Zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32ZM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.4-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88Z"/></svg>
+        </span>
+        <span class="label"><b>Instagram</b><small>@ofchugocs · bastidores 🚀</small></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+      </a>
+
+      <a class="link reveal" style="animation-delay:.3s" href="https://www.linkedin.com/in/hugo-coelho-da-silveira-301025387/" target="_blank" rel="noopener">
+        <span class="icon li">
+          <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+        </span>
+        <span class="label"><b>LinkedIn</b><small>Conecte-se comigo</small></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+      </a>
+
+      <a class="link reveal" style="animation-delay:.35s" href="http://lattes.cnpq.br/7361381257966385" target="_blank" rel="noopener">
+        <span class="icon lattes">
+          <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12 3 1 9l11 6 9-4.91V17h2V9L12 3ZM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82Z"/></svg>
+        </span>
+        <span class="label"><b>Currículo Lattes</b><small>Minha trajetória acadêmica 📚</small></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+      </a>
+
+      <a class="link reveal" style="animation-delay:.4s" href="mailto:hugocs2006@gmail.com">
+        <span class="icon mail">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m3 7 9 6 9-6"/></svg>
+        </span>
+        <span class="label"><b>E-mail</b><small>hugocs2006@gmail.com</small></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+      </a>
+    </nav>
+
+    <div class="actions reveal" style="animation-delay:.45s">
+      <button class="action" type="button" id="share">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="m16 6-4-4-4 4"/><path d="M12 2v13"/></svg>
+        Compartilhar
+      </button>
+    </div>
+
+    <div class="soon reveal" style="animation-delay:.5s">
+      <span>🛒 Loja de produtos 3D</span>
+      <span class="pill">Em breve</span>
+    </div>
+
+    <footer class="reveal" style="animation-delay:.55s">© <span id="year">2026</span> Hugo Coelho</footer>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">Link copiado!</div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Número montado só na hora, para robôs não acharem ele no código da página
+    document.getElementById('whatsapp').addEventListener('click', (e) => {
+      const n = ['55', '48', '98438', '3288'].join('');
+      e.currentTarget.href = 'https://wa.me/' + n + '?text=' + encodeURIComponent('Olá Hugo! Vim pelo seu cartão NFC');
+    });
+
+    document.getElementById('share').addEventListener('click', async () => {
+      const data = {
+        title: 'Hugo Coelho',
+        text: 'Conheça o Hugo Coelho · Automação & Impressão 3D',
+        url: 'https://hugocs2006.github.io/'
+      };
+      if (navigator.share) {
+        try { await navigator.share(data); } catch (e) {}
+        return;
+      }
+      try {
+        await navigator.clipboard.writeText(data.url);
+        const t = document.getElementById('toast');
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 1800);
+      } catch (e) {
+        prompt('Copie o link:', data.url);
+      }
+    });
+  </script>
+</body>
+</html>
